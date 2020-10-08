@@ -330,8 +330,6 @@ MonoBehaviour:
   _mazeWidth: 10
   _mazeHeight: 10
   _mazeScale: 1
-  _mazeOffset: 0.5
-  _rotationOffset: 90
   _wallObject: {fileID: 4194104377250839061, guid: 3044e062cc287ef47bccbb3ad4b7ddb0, type: 3}
   _floorObject: {fileID: 7834483125466598147, guid: 1e6571d1475219046b5e9aee444ffd96, type: 3}
 --- !u!4 &993268446
