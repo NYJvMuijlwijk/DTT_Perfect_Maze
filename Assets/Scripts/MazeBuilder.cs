@@ -47,7 +47,7 @@ namespace Assets.Scripts
                 // get the current cell's position
                 Vector3 cellPos = new Vector3(-column, 0 ,row);
                 // instantiate floor object at cell position and add to _floors list
-                _floors.Add(Instantiate(_floorObject, cellPos,Quaternion.identity));//TODO: instantiate floor as one object under entire maze
+                _floors.Add(Instantiate(_floorObject, cellPos + _floorObject.transform.position, Quaternion.identity));//TODO: instantiate floor as one object under entire maze
 
                 // instantiate a wall if one should be present. offset by half the cell size and rotate depending on which side it is.
                 // walls get added to the _walls list
