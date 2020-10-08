@@ -21,7 +21,9 @@ namespace Assets.Scripts
             // set position to middle of maze
             transform.position = new Vector3(-maze.Width / 2f, 10, maze.Height / 2f);
             // adjust orthographic size to always fit maze in width and height.
-            _camera.orthographicSize = Mathf.Max(maze.Height / 2f,maze.Width / 16f * 9 / 2f) + _extraCameraSize;
+            _camera.orthographicSize = Mathf.Max(maze.Height / 2f,maze.Width * (1 / _camera.aspect) / 2f);
+            // add extra size to fully show maze
+            _camera.orthographicSize += maze.Height > maze.Width * (1 / _camera.aspect) ? _extraCameraSize : _extraCameraSize * (1 / _camera.aspect);
         }
 
         void OnDestroy()
