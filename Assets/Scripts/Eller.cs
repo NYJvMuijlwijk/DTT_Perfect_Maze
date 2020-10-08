@@ -2,13 +2,14 @@
 //Eller's algorithm
 //created by asosnovskiy, 2016
 
-using System;
+using UnityEngine;
+using Random = System.Random;
 
 namespace Assets.Scripts
 {
-	public class Eller : IAlgorithm
+	public class Eller : MonoBehaviour
 	{
-		public Maze GenerateMaze(int width, int height)
+		public static Maze GenerateMaze(int width, int height)
 		{
 			var random = new Random();
 
@@ -86,6 +87,5 @@ namespace Assets.Scripts
 
 			return maze;
 		}
-
     }
 }
