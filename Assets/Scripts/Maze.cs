@@ -1,28 +1,30 @@
-﻿namespace Assets.Scripts
+﻿using UnityEngine;
+
+namespace Assets.Scripts
 {
     public class Maze
     {
-        public readonly int width;
-        public readonly int height;
+        public readonly int Width;
+        public readonly int Height;
 
-        public readonly Cell[] cells;
+        public readonly Cell[] Cells;
 
         public Maze(int w, int h)
         {
-            width = w;
-            height = h;
+            Width = w;
+            Height = h;
 
-            cells = new Cell[width * height];
+            Cells = new Cell[Width * Height];
 
-            for (int i = 0; i < cells.Length; i++)
+            for (int i = 0; i < Cells.Length; i++)
             {
-                cells[i] = new Cell();
+                Cells[i] = new Cell();
             }
         }
 
         public Cell GetCell(int r, int c)
         {
-            return cells[r * width + c];
+            return Cells[r * Width + c];
         }
     }
 }
