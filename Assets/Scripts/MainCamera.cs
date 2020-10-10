@@ -32,7 +32,7 @@ namespace Assets.Scripts
         {
             Vector2 newRes = new Vector2(Screen.width, Screen.height);
             // Adjust camera position if screen dimensions changed
-            if (_screenResolution == newRes) return;
+            if (_screenResolution == newRes || _maze == null) return;
             AdjustCameraPosition(_maze);
             _screenResolution = newRes;
         }
