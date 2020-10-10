@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 namespace Assets.Scripts
@@ -9,6 +10,8 @@ namespace Assets.Scripts
         [Header("Maze settings")]
         [SerializeField, Min(1)] private int _mazeWidth = 10;
         [SerializeField, Min(1)] private int _mazeHeight = 10;
+        [SerializeField] private TextMeshProUGUI _widthField;
+        [SerializeField] private TextMeshProUGUI _heightField;
         [Header("Maze Object Components")]
         [SerializeField] private GameObject _wallObject;
         [SerializeField] private GameObject _floorObject;
@@ -111,6 +114,22 @@ namespace Assets.Scripts
         {
             if (increment) _mazeWidth++;
             else if (_mazeWidth - 1 > 0) _mazeWidth--;
+
+            // update _widthField
+            _widthField.text = _mazeWidth.ToString();
+        }
+
+        /// <summary>
+        /// Increment or decrement _mazeHeight by one
+        /// </summary>
+        /// <param name="increment">false for decrement</param>
+        public void IncrementMazeHeight(bool increment)
+        {
+            if (increment) _mazeHeight++;
+            else if (_mazeHeight - 1 > 0) _mazeHeight--;
+
+            // update _heightField
+            _heightField.text = _mazeHeight.ToString();
         }
 
         /// <summary>
