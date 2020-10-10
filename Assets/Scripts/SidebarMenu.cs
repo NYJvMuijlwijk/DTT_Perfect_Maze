@@ -11,6 +11,7 @@ namespace Assets.Scripts
         [SerializeField] private RectTransform _toggleButton;
         [SerializeField] private float _toggleSize = 60f;
         [SerializeField] private GameObject _sidebarMenu;
+        [SerializeField] private Canvas _canvas;
 
         private RectTransform _transform;
         private Vector2 _canvasDimensions;
@@ -23,7 +24,7 @@ namespace Assets.Scripts
 
         void Start()
         {
-            _canvasDimensions = GetComponent<CanvasScaler>().referenceResolution;
+            _canvasDimensions = _canvas.GetComponent<CanvasScaler>().referenceResolution;
             _toggleImage = _toggleButton.GetComponent<Image>();
 
             // show/hide sidebar depending on visibility
@@ -31,6 +32,27 @@ namespace Assets.Scripts
                 ShowSidebar();
             else 
                 HideSidebar();
+
+            MainMenu.PlayGame += EnableSidebar;
+            MainMenu.MainMenuOpened += DisableSidebar;
+        }
+
+        private void EnableSidebar()
+        {
+            foreach (Transform child in GetComponentsInChildren<Transform>(true))
+            {
+                child.gameObject.SetActive(true);
+            }
+
+            if(_visible) HideSidebar();
+        }
+
+        private void DisableSidebar()
+        {
+            foreach (Transform child in transform)
+            {
+                child.gameObject.SetActive(false);
+            }
         }
 
         /// <summary>
@@ -85,6 +107,12 @@ namespace Assets.Scripts
             _toggleImage.transform.rotation = Quaternion.identity * Quaternion.Euler(0,0,180f);
 
             _visible = false;
+        }
+
+        void OnDestroy()
+        {
+            MainMenu.PlayGame -= EnableSidebar;
+            MainMenu.MainMenuOpened -= DisableSidebar;
         }
     }
 }
