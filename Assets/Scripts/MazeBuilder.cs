@@ -10,8 +10,8 @@ namespace Assets.Scripts
         [Header("Maze settings")]
         [SerializeField, Min(1)] private int _mazeWidth = 10;
         [SerializeField, Min(1)] private int _mazeHeight = 10;
-        [SerializeField] private TextMeshProUGUI _widthField;
-        [SerializeField] private TextMeshProUGUI _heightField;
+        [SerializeField] private TMP_InputField _widthField;
+        [SerializeField] private TMP_InputField _heightField;
         [Header("Maze Object Components")]
         [SerializeField] private GameObject _wallObject;
         [SerializeField] private GameObject _floorObject;
@@ -26,6 +26,11 @@ namespace Assets.Scripts
         {
             _walls = new List<GameObject>();
             _floors = new List<GameObject>();
+
+            // update _widthField
+            _widthField.text = _mazeWidth.ToString();
+            // update _heightField
+            _heightField.text = _mazeHeight.ToString();
         }
 
         /// <summary>
