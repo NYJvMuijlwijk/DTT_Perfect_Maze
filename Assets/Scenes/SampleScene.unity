@@ -287,7 +287,7 @@ RectTransform:
   - {fileID: 86440191}
   - {fileID: 1427183495}
   m_Father: {fileID: 434234127}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -571,7 +571,6 @@ GameObject:
   - component: {fileID: 434234127}
   - component: {fileID: 434234129}
   - component: {fileID: 434234128}
-  - component: {fileID: 434234130}
   m_Layer: 5
   m_Name: SidebarMenu
   m_TagString: Untagged
@@ -590,7 +589,6 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1847998386}
   - {fileID: 1518171196}
   - {fileID: 1991259252}
   - {fileID: 100708138}
@@ -640,22 +638,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 434234126}
   m_CullTransparentMesh: 0
---- !u!114 &434234130
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 434234126}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c3e4ee99adb5b4449f001fadaf31c81, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _menuWidthPercent: 0.3
-  _visible: 1
-  _toggleButton: {fileID: 1847998386}
-  _canvasScaler: {fileID: 554677326}
 --- !u!1 &554677324
 GameObject:
   m_ObjectHideFlags: 0
@@ -668,6 +650,7 @@ GameObject:
   - component: {fileID: 554677327}
   - component: {fileID: 554677326}
   - component: {fileID: 554677325}
+  - component: {fileID: 554677329}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -747,6 +730,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 434234127}
+  - {fileID: 1847998386}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -755,6 +739,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &554677329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 554677324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c3e4ee99adb5b4449f001fadaf31c81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _menuWidthPercent: 0.3
+  _visible: 1
+  _toggleButton: {fileID: 1847998386}
+  _toggleSize: 60
+  _sidebarMenu: {fileID: 434234126}
 --- !u!1 &615119625
 GameObject:
   m_ObjectHideFlags: 0
@@ -2019,7 +2020,7 @@ RectTransform:
   m_Children:
   - {fileID: 123942056}
   m_Father: {fileID: 434234127}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2662,12 +2663,12 @@ RectTransform:
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 621875076}
-  m_Father: {fileID: 434234127}
-  m_RootOrder: 0
+  m_Father: {fileID: 554677328}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -272.0703, y: -0.000032425}
+  m_AnchoredPosition: {x: 438.14905, y: -0.000032425}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1847998387
@@ -2713,7 +2714,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 434234130}
+      - m_Target: {fileID: 554677329}
         m_TargetAssemblyTypeName: Assets.Scripts.SidebarMenu, Assembly-CSharp
         m_MethodName: ToggleMenu
         m_Mode: 1
@@ -2929,7 +2930,7 @@ RectTransform:
   - {fileID: 1243754702}
   - {fileID: 328246295}
   m_Father: {fileID: 434234127}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
