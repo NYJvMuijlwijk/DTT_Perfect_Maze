@@ -10,8 +10,8 @@ namespace Assets.Scripts
         [Header("Maze settings")]
         [SerializeField, Min(1)] private int _mazeWidth = 10;
         [SerializeField, Min(1)] private int _mazeHeight = 10;
-        [SerializeField] private TMP_InputField _widthField;
-        [SerializeField] private TMP_InputField _heightField;
+        [SerializeField] private TMP_InputField[] _widthFields;
+        [SerializeField] private TMP_InputField[] _heightFields;
         [Header("Maze Object Components")]
         [SerializeField] private GameObject _wallObject;
         [SerializeField] private GameObject _floorObject;
@@ -27,10 +27,27 @@ namespace Assets.Scripts
             _walls = new List<GameObject>();
             _floors = new List<GameObject>();
 
-            // update _widthField
-            _widthField.text = _mazeWidth.ToString();
-            // update _heightField
-            _heightField.text = _mazeHeight.ToString();
+            // Initialize all dimension input fields
+            UpdateWidthFields();
+            UpdateHeightFields();
+        }
+
+        /// <summary>
+        /// Updates all registered height input fields
+        /// </summary>
+        private void UpdateHeightFields()
+        {
+            foreach (TMP_InputField field in _heightFields)
+                field.text = _mazeHeight.ToString();
+        }
+
+        /// <summary>
+        /// Updates all registered width input fields
+        /// </summary>
+        private void UpdateWidthFields()
+        {
+            foreach (TMP_InputField field in _widthFields)
+                field.text = _mazeWidth.ToString();
         }
 
         /// <summary>
@@ -54,27 +71,22 @@ namespace Assets.Scripts
                 // get the current row and column
                 int row = i / _mazeWidth + 1;
                 int column = i % _mazeWidth + 1;
-                
+
                 // get the current cell's position
-                Vector3 cellPos = new Vector3(-column, 0 ,row);
+                Vector3 cellPos = new Vector3(-column, 0, row);
                 // instantiate floor object at cell position and add to _floors list
                 _floors.Add(Instantiate(_floorObject, cellPos + _floorObject.transform.position, Quaternion.identity));//TODO: instantiate floor as one object under entire maze
 
                 // instantiate a wall if one should be present. offset by half the cell size and rotate depending on which side it is.
                 // walls get added to the _walls list
-                if (c.Down) _walls.Add(Instantiate(_wallObject, cellPos - Vector3.back / 2 + _wallObject.transform.position, _wallObject.transform.rotation ));
+                if (c.Down) _walls.Add(Instantiate(_wallObject, cellPos - Vector3.back / 2 + _wallObject.transform.position, _wallObject.transform.rotation));
                 if (c.Left) _walls.Add(Instantiate(_wallObject, cellPos - Vector3.left / 2 + _wallObject.transform.position, _wallObject.transform.rotation * Quaternion.Euler(0, 90, 0)));
-                if (c.Up) _walls.Add(Instantiate(_wallObject, cellPos - Vector3.forward / 2 + _wallObject.transform.position, _wallObject.transform.rotation * Quaternion.Euler(0,180, 0)));
+                if (c.Up) _walls.Add(Instantiate(_wallObject, cellPos - Vector3.forward / 2 + _wallObject.transform.position, _wallObject.transform.rotation * Quaternion.Euler(0, 180, 0)));
                 if (c.Right) _walls.Add(Instantiate(_wallObject, cellPos - Vector3.right / 2 + _wallObject.transform.position, _wallObject.transform.rotation * Quaternion.Euler(0, 270, 0)));
             }
 
             // Invoke MazeBuilt event
             OnMazeBuilt(_maze);
-        }
-
-        void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Space)) BuildMaze();
         }
 
         /// <summary>
@@ -83,16 +95,22 @@ namespace Assets.Scripts
         /// <param name="width">integral number string</param>
         public void SetMazeWidth(string width)
         {
-            bool result = int.TryParse(width,out var _width);
+            bool result = int.TryParse(width, out var _width);
 
-            if (result) _mazeWidth = _width;
+            if (!result) return;
+            _mazeWidth = _width;
+            UpdateWidthFields();
         }
 
         /// <summary>
         /// Set maze width to given value
         /// </summary>
         /// <param name="width">width of maze</param>
-        public void SetMazeWidth(int width) => _mazeWidth = width;
+        public void SetMazeWidth(int width)
+        {
+            _mazeWidth = width;
+            UpdateWidthFields();
+        }
 
         /// <summary>
         /// Set maze height to given parsed string value
@@ -100,16 +118,23 @@ namespace Assets.Scripts
         /// <param name="height">integral number string</param>
         public void SetMazeHeight(string height)
         {
-            bool result = int.TryParse(height,out var _height);
+            bool result = int.TryParse(height, out var _height);
 
-            if (result) _mazeHeight = _height;
+            if (!result) return;
+            _mazeHeight = _height;
+            UpdateHeightFields();
         }
 
         /// <summary>
         /// Set maze height to given value
         /// </summary>
         /// <param name="height">height of maze</param>
-        public void SetMazeHeight(int height) => _mazeHeight = height;
+        public void SetMazeHeight(int height)
+        {
+            _mazeHeight = height;
+            UpdateHeightFields();
+        } 
+
 
         /// <summary>
         /// Increment or decrement _mazeWidth by one
@@ -119,9 +144,9 @@ namespace Assets.Scripts
         {
             if (increment) _mazeWidth++;
             else if (_mazeWidth - 1 > 0) _mazeWidth--;
+            else return;
 
-            // update _widthField
-            _widthField.text = _mazeWidth.ToString();
+            UpdateWidthFields();
         }
 
         /// <summary>
@@ -132,9 +157,9 @@ namespace Assets.Scripts
         {
             if (increment) _mazeHeight++;
             else if (_mazeHeight - 1 > 0) _mazeHeight--;
+            else return;
 
-            // update _heightField
-            _heightField.text = _mazeHeight.ToString();
+            UpdateHeightFields();
         }
 
         /// <summary>
