@@ -6,7 +6,10 @@ namespace Assets.Scripts
     public class MainCamera : MonoBehaviour
     {
         [SerializeField] private float _extraCameraSize = .1f;
+
         private Camera _camera;
+        private Vector2 _screenResolution;
+        private Maze _maze;
 
         // Start is called before the first frame update
         void Start()
@@ -14,6 +17,24 @@ namespace Assets.Scripts
             _camera = GetComponent<Camera>();
             // Adjust camera position and size every time a new maze gets created
             MazeBuilder.MazeBuilt += AdjustCameraPosition;
+            MazeBuilder.MazeBuilt += UpdateMaze;
+
+            // Get current screen resolution for checking resolution changes
+            _screenResolution = new Vector2(Screen.width,Screen.height);
+        }
+
+        void Update()
+        {
+            CheckScreenResChanges();
+        }
+
+        private void CheckScreenResChanges()
+        {
+            Vector2 newRes = new Vector2(Screen.width, Screen.height);
+            // Adjust camera position if screen dimensions changed
+            if (_screenResolution == newRes) return;
+            AdjustCameraPosition(_maze);
+            _screenResolution = newRes;
         }
 
         private void AdjustCameraPosition(Maze maze)
@@ -26,9 +47,17 @@ namespace Assets.Scripts
             _camera.orthographicSize += maze.Height > maze.Width * (1 / _camera.aspect) ? _extraCameraSize : _extraCameraSize * (1 / _camera.aspect);
         }
 
+        /// <summary>
+        /// Updates the _maze variable
+        /// </summary>
+        /// <param name="maze">the new maze</param>
+        private void UpdateMaze(Maze maze) => _maze = maze;
+
         void OnDestroy()
         {
+            // remove any subscriptions made
             MazeBuilder.MazeBuilt -= AdjustCameraPosition;
+            MazeBuilder.MazeBuilt -= UpdateMaze;
         }
     }
 }
