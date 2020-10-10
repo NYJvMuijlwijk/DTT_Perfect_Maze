@@ -289,7 +289,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0.000091552734, y: 183.99998}
+  m_AnchoredPosition: {x: 0.00012207031, y: 183.99998}
   m_SizeDelta: {x: 0.000030517578, y: 116.53873}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &123942055
@@ -1041,7 +1041,7 @@ GameObject:
   - component: {fileID: 721802896}
   - component: {fileID: 721802895}
   m_Layer: 5
-  m_Name: Height Down Button
+  m_Name: Width Down Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1172,7 +1172,7 @@ GameObject:
   - component: {fileID: 813757151}
   - component: {fileID: 813757150}
   m_Layer: 5
-  m_Name: Height Text
+  m_Name: Width Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1497,7 +1497,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mazeWidth: 10
   _mazeHeight: 10
-  _widthField: {fileID: 0}
+  _widthField: {fileID: 2060352416}
   _heightField: {fileID: 615119627}
   _wallObject: {fileID: 4194104377250839061, guid: 3044e062cc287ef47bccbb3ad4b7ddb0, type: 3}
   _floorObject: {fileID: 7834483125466598147, guid: 1e6571d1475219046b5e9aee444ffd96, type: 3}
@@ -2051,7 +2051,7 @@ GameObject:
   - component: {fileID: 1597651240}
   - component: {fileID: 1597651239}
   m_Layer: 5
-  m_Name: Height Field Label
+  m_Name: Width Field Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2289,7 +2289,7 @@ GameObject:
   - component: {fileID: 1626345771}
   - component: {fileID: 1626345770}
   m_Layer: 5
-  m_Name: Height Up Button
+  m_Name: Width Up Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2687,7 +2687,7 @@ GameObject:
   - component: {fileID: 2060352417}
   - component: {fileID: 2060352416}
   m_Layer: 5
-  m_Name: Height Field
+  m_Name: Width Field
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
