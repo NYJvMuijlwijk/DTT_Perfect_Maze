@@ -25,6 +25,9 @@ namespace Assets.Scripts
             _floors = new List<GameObject>();
         }
 
+        /// <summary>
+        /// Build maze using provided wall and floor objects using the selected maze algorithm
+        /// </summary>
         public void BuildMaze()
         {
             // Generate the maze
@@ -57,6 +60,7 @@ namespace Assets.Scripts
                 if (c.Right) _walls.Add(Instantiate(_wallObject, cellPos - Vector3.right / 2 + _wallObject.transform.position, _wallObject.transform.rotation * Quaternion.Euler(0, 270, 0)));
             }
 
+            // Invoke MazeBuilt event
             OnMazeBuilt(_maze);
         }
 
@@ -65,6 +69,54 @@ namespace Assets.Scripts
             if (Input.GetKeyDown(KeyCode.Space)) BuildMaze();
         }
 
+        /// <summary>
+        /// Set maze width to given parsed string value
+        /// </summary>
+        /// <param name="width">integral number string</param>
+        public void SetMazeWidth(string width)
+        {
+            bool result = int.TryParse(width,out var _width);
+
+            if (result) _mazeWidth = _width;
+        }
+
+        /// <summary>
+        /// Set maze width to given value
+        /// </summary>
+        /// <param name="width">width of maze</param>
+        public void SetMazeWidth(int width) => _mazeWidth = width;
+
+        /// <summary>
+        /// Set maze height to given parsed string value
+        /// </summary>
+        /// <param name="height">integral number string</param>
+        public void SetMazeHeight(string height)
+        {
+            bool result = int.TryParse(height,out var _height);
+
+            if (result) _mazeHeight = _height;
+        }
+
+        /// <summary>
+        /// Set maze height to given value
+        /// </summary>
+        /// <param name="height">height of maze</param>
+        public void SetMazeHeight(int height) => _mazeHeight = height;
+
+        /// <summary>
+        /// Increment or decrement _mazeWidth by one
+        /// </summary>
+        /// <param name="increment">false for decrement</param>
+        public void IncrementMazeWidth(bool increment)
+        {
+            if (increment) _mazeWidth++;
+            else if (_mazeWidth - 1 > 0) _mazeWidth--;
+        }
+
+        /// <summary>
+        /// Invokes the MazeBuilt event
+        /// </summary>
+        /// <param name="maze">The generated maze</param>
         private static void OnMazeBuilt(Maze maze)
         {
             MazeBuilt?.Invoke(maze);
