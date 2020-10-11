@@ -82,10 +82,10 @@ namespace Assets.Scripts
 			}
 
 			// Entrance and exit
-			maze.GetCell(0, 0).Left = false;
-			maze.GetCell(height - 1, width - 1).Right = false;
+			//maze.GetCell(0, 0).Left = false;
+            maze.GetCell(height - 1, width - 1).Right = false;
 
-			return maze;
+            return maze;
 		}
     }
 }
