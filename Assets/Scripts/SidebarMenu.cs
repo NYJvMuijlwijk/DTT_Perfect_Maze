@@ -37,6 +37,9 @@ namespace Assets.Scripts
             MainMenu.MainMenuOpened += DisableSidebar;
         }
 
+        /// <summary>
+        /// Enable all sidebar menu canvas objects and hides them if currently visible
+        /// </summary>
         private void EnableSidebar()
         {
             foreach (Transform child in GetComponentsInChildren<Transform>(true))
@@ -47,6 +50,9 @@ namespace Assets.Scripts
             if(_visible) HideSidebar();
         }
 
+        /// <summary>
+        /// Disable all sidebar menu canvas objects
+        /// </summary>
         private void DisableSidebar()
         {
             foreach (Transform child in transform)
@@ -56,7 +62,7 @@ namespace Assets.Scripts
         }
 
         /// <summary>
-        /// (un)hides the sidebar menu
+        /// Toggles the sidebar menu visibility
         /// </summary>
         public void ToggleMenu()
         {

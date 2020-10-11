@@ -28,6 +28,9 @@ namespace Assets.Scripts
             CheckScreenResChanges();
         }
 
+        /// <summary>
+        /// Check for screen resolution changes and adjust camera to fit maze accordingly
+        /// </summary>
         private void CheckScreenResChanges()
         {
             Vector2 newRes = new Vector2(Screen.width, Screen.height);
@@ -37,6 +40,10 @@ namespace Assets.Scripts
             _screenResolution = newRes;
         }
 
+        /// <summary>
+        /// Moves the main camera to show maze in its entirety
+        /// </summary>
+        /// <param name="maze">The maze to adjust camera to</param>
         private void AdjustCameraPosition(Maze maze)
         {
             // set position to middle of maze
