@@ -143,7 +143,7 @@ namespace Assets.Scripts
         public void IncrementMazeWidth(bool increment)
         {
             if (increment && _mazeWidth + 1 <= 100) _mazeWidth++;
-            else if (_mazeWidth - 1 > 0) _mazeWidth--;
+            else if (!increment && _mazeWidth - 1 > 0) _mazeWidth--;
             else return;
 
             UpdateWidthFields();
@@ -156,7 +156,7 @@ namespace Assets.Scripts
         public void IncrementMazeHeight(bool increment)
         {
             if (increment && _mazeHeight + 1 <= 100) _mazeHeight++;
-            else if (_mazeHeight - 1 > 0) _mazeHeight--;
+            else if (!increment && _mazeHeight - 1 > 0) _mazeHeight--;
             else return;
 
             UpdateHeightFields();
