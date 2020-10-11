@@ -8,8 +8,8 @@ namespace Assets.Scripts
     public class MazeBuilder : MonoBehaviour
     {
         [Header("Maze settings")]
-        [SerializeField, Min(1)] private int _mazeWidth = 10;
-        [SerializeField, Min(1)] private int _mazeHeight = 10;
+        [SerializeField, Range(1,100)] private int _mazeWidth = 10;
+        [SerializeField, Range(1,100)] private int _mazeHeight = 10;
         [SerializeField] private TMP_InputField[] _widthFields;
         [SerializeField] private TMP_InputField[] _heightFields;
         [Header("Maze Object Components")]
@@ -51,7 +51,7 @@ namespace Assets.Scripts
         }
 
         /// <summary>
-        /// Build maze using provided wall and floor objects using the selected maze algorithm
+        /// Build maze using provided wall and floor objects using the selected maze algorithm(not yet implemented)
         /// </summary>
         public void BuildMaze()
         {
@@ -98,7 +98,7 @@ namespace Assets.Scripts
             bool result = int.TryParse(width, out var _width);
 
             if (!result) return;
-            _mazeWidth = _width;
+            _mazeWidth = Mathf.Clamp(_width, 1, 100);
             UpdateWidthFields();
         }
 
@@ -108,7 +108,7 @@ namespace Assets.Scripts
         /// <param name="width">width of maze</param>
         public void SetMazeWidth(int width)
         {
-            _mazeWidth = width;
+            _mazeWidth = Mathf.Clamp(width,1,100);
             UpdateWidthFields();
         }
 
@@ -121,7 +121,7 @@ namespace Assets.Scripts
             bool result = int.TryParse(height, out var _height);
 
             if (!result) return;
-            _mazeHeight = _height;
+            _mazeHeight = Mathf.Clamp(_height, 1, 100);
             UpdateHeightFields();
         }
 
@@ -131,7 +131,7 @@ namespace Assets.Scripts
         /// <param name="height">height of maze</param>
         public void SetMazeHeight(int height)
         {
-            _mazeHeight = height;
+            _mazeHeight = Mathf.Clamp(height, 1, 100);
             UpdateHeightFields();
         } 
 
@@ -142,7 +142,7 @@ namespace Assets.Scripts
         /// <param name="increment">false for decrement</param>
         public void IncrementMazeWidth(bool increment)
         {
-            if (increment) _mazeWidth++;
+            if (increment && _mazeWidth + 1 <= 100) _mazeWidth++;
             else if (_mazeWidth - 1 > 0) _mazeWidth--;
             else return;
 
@@ -155,7 +155,7 @@ namespace Assets.Scripts
         /// <param name="increment">false for decrement</param>
         public void IncrementMazeHeight(bool increment)
         {
-            if (increment) _mazeHeight++;
+            if (increment && _mazeHeight + 1 <= 100) _mazeHeight++;
             else if (_mazeHeight - 1 > 0) _mazeHeight--;
             else return;
 
